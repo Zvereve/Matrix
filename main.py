@@ -25,7 +25,17 @@ class Matrix:
 
 
     def __mul__(self, other: "Matrix")-> "Matrix":
-        return Matrix([[i * other for i in list] for list in self.matrix])
+        if isinstance(other, (int, float)):
+
+            return Matrix([[i * other for i in list] for list in self.matrix])
+        elif isinstance(other, Matrix):
+
+            for x in range(len(other.matrix[0])):
+                for y in range(len(other.matrix)):
+                    self.matrix[x][y] = self.matrix[x][y] * other.matrix[x][y]
+
+            return self
+
 
 
 if __name__ == '__main__':
@@ -37,3 +47,4 @@ if __name__ == '__main__':
     print(m.len_str)
     print(m+n)
     print(m * 5)
+    print(m * n)
