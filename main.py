@@ -2,12 +2,19 @@ from copy import deepcopy
 
 
 class Matrix:
+    """Создание класса Matrix"""
     def __init__(self, matrix_):
+        """
+        param: matrix  содержит масив список листов
+        param: len_slb колл-во столбцов матрицы
+        param:  len_str колл-во строк матрицы
+        """
         self.matrix = deepcopy(matrix_)
-        self.len_str = len(matrix_[0])
-        self.len_slb = len(matrix_)
+        self.len_slb = len(matrix_[0])
+        self.len_str = len(matrix_)
 
     def __str__(self):
+        """ метод вывода матрицы """
         print("_" * len(self.matrix[0]) * 6)
         for row in self.matrix:
             for i in row:
@@ -17,6 +24,7 @@ class Matrix:
 
 
     def __add__(self, other: "Matrix")-> "Matrix":
+        """ Метод сложения двух матриц """
         if not isinstance(other, Matrix):
             raise TypeError
         if not (len(other.matrix[0]) == len(self.matrix[0]) and len(other.matrix) == len(self.matrix)):
@@ -28,6 +36,7 @@ class Matrix:
 
 
     def __mul__(self, other: "Matrix")-> "Matrix":
+        """Умножение матрицы на число и на другую матрицу"""
         if isinstance(other, (int, float)):
             return Matrix([[i * other for i in list] for list in self.matrix])
         elif isinstance(other, Matrix) and len(other.matrix) == self.len_str:
