@@ -54,6 +54,6 @@ if __name__ == '__main__':
     #print(m.len_slb)
     #print(m.len_str)
     print(m + n)
-    #print(m * 5)
+    print(m * 5)
     print(m * n)
     print(a * b)
